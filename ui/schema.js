@@ -1,17 +1,18 @@
 var user =  {
     username : "",
-    inventions : {
-        "id" : {
-            // invention
-        }
-    }
+    inventions : ["invention-id"]
 }
 
 var user_profile_page = {
     // on-chain data
     username : "",
     inventions : {
-        "id" : {}
+        "id" : {
+            // invention(s)
+            licenses : {
+                "oracle-name": "status"
+            }
+        }
     },
     // off-chain plugins/data
     social_info : {                     // nice-to-have
@@ -26,25 +27,20 @@ var invention = {
     id : "",
     title : "",
     version : "",
-    description : "",
-    licenses : {
-        "oracle" : "pending",
-        "oracle" : "approved"
-    }
+    description : ""
 }
 
 var inventions_page = [{
     // invention(s)
+    licenses : {
+        "oracle-name": "status"
+    }
 }]
 
-var license_oracle = {
+var oracle = {
     org_info : {
         name : ""
     },
-    inventions : {
-        "id" : {
-            status: "",
-            // invention
-        }
-    }
+    pending_inventions: ["invention-id"],
+    approved_inventions: ["invention-id"]
 }
