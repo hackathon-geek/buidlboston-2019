@@ -3,7 +3,7 @@ var user =  {
     inventions : ["invention-id"]
 }
 
-var user_profile_page = {
+var user_page = {
     // on-chain data
     username : "",
     inventions : {
