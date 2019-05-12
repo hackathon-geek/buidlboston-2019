@@ -35,6 +35,7 @@ var users = [
 ];
 var oracles = [
     {
+        id: "fda",
         org_info : {
             name : "fda"
         },
@@ -42,6 +43,7 @@ var oracles = [
         approved_inventions: ["abc121", "abc122"]
     },
     {
+        id: "eu",
         org_info : {
             name : "eu"
         },
