@@ -5,9 +5,23 @@ const awsConfig = config.awsConfig;
 sdk.config.update(awsConfig);
 const dbClient = new sdk.DynamoDB.DocumentClient();
 
-const pushData = function(){};
+const write = function(table, data){
+    return new Promise(function(resolve, reject) {
+        
+        dbClient.put({
+            TableName: table.name,
+            Item: data
+        }, function(err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+};
 
-const pullData = function(table, id) {
+const read = function(table, id) {
     return new Promise(function(resolve, reject) {
         let key = {};
         key[table.primaryKey] = id;
@@ -25,5 +39,5 @@ const pullData = function(table, id) {
     });
 };
 
-module.exports.pushData = pushData;
-module.exports.pullData = pullData;
+module.exports.write = write;
+module.exports.read = read;
