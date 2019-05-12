@@ -1,7 +1,7 @@
 const aws = require("../libs/aws.js");
-const config = require("../configs/aws-config.js");
+const mockData = require("../tests/mock-data.js");
 
-aws.read(config.tables.INVENTIONS_TABLE, "INV122")
+aws.read(mockData.tables.INVENTIONS_TABLE, "INV122")
     .then(function(obj) {
         console.log(obj);
     })
@@ -15,7 +15,7 @@ let INV123 = {
     version : "v1",
     description : "Blah Blah Blah Blah"
 };
-aws.write(config.tables.INVENTIONS_TABLE, INV123)
+aws.write(mockData.tables.INVENTIONS_TABLE, INV123)
     .then(function(obj) {
         console.log("success!");
     })
