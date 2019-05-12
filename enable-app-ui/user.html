@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Enable Project</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <span id="notification_panel"></span>
+            <!-- REGISTER -->
+            <h2>Register as inventor</h2>
+            <div id="register">
+                <input type="text" id="new_inventor_username" />
+                <button id="new_inventor_register">Register!</button>
+            </div>
+            <!-- LIST INVENTIONS -->
+            <h2>Inventions</h2>
+            <div id="inventions">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Version</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Inventor</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
