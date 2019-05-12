@@ -4,6 +4,7 @@ const config = require("./configs/algorand-config.js");
 const aws = require("./libs/aws.js");
 
 const read = aws.read;
+const readAll = aws.readAll;
 const write = function(jsonData, table) {
 
     // TODO: Promise chaining
@@ -45,4 +46,5 @@ const write = function(jsonData, table) {
 };
 
 module.exports.read = read;
+module.exports.readAll = readAll;
 module.exports.write = write;

@@ -39,5 +39,20 @@ const read = function(table, id) {
     });
 };
 
+const readAll = function(table, awsFilterExpression) {
+    return new Promise((resolve, reject) => {
+        dbClient.scan({
+            TableName: table.name
+        }, (err,data) => {
+            if (err) {
+                reject(err);
+            } else {        
+                resolve(data);
+            }
+        });
+    });
+}
+
 module.exports.write = write;
 module.exports.read = read;
+module.exports.readAll = readAll;
