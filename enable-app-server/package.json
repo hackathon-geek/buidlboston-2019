@@ -1,0 +1,22 @@
+{
+  "name": "enable-app-server",
+  "version": "1.0.0",
+  "description": "GitHub for medical-device deisngers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackathon-geek/buidlboston-2019.git"
+  },
+  "author": "akshit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hackathon-geek/buidlboston-2019/issues"
+  },
+  "homepage": "https://github.com/hackathon-geek/buidlboston-2019#readme",
+  "dependencies": {
+    "algorand": "file:../algorand-sdk"
+  }
+}
