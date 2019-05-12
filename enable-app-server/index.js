@@ -1,5 +1,7 @@
-const http = new require('http');
-const algorand = new require('algorand');
+const http = require('http');
+const url = require('url');
+const algorand = require('algorand');
+const awsConfig = require('./configs/aws-config.js');
 
 // let invention = {
 // 	id : "INV124",
@@ -7,49 +9,74 @@ const algorand = new require('algorand');
 // 	version : "v1",
 // 	description : "Blah Blah Blah Blah"
 // };
+
 // let table = {
 // 	"name": "enable_inventions",
 // 	"primaryKey": "id"
 // };
 
 // algorand.write(invention, table);
-// algorand.read(table, invention.id)
-// .then(function(obj) {
-// 	console.log(obj);
-// })
-// .catch(function(obj) {
-// 	console.log(obj);
-// });
 
 const app = http.createServer(function(req, res) {
 
-	switch(req.method + "_" + req.url) {
+	const generateResponse = function(jsonObj) {
+		res.write(JSON.stringify(jsonObj));
+		res.end();
+	}
+	const urlInfo = url.parse(req.url, true);
+
+	switch(req.method + urlInfo.pathname) {
 		// invention
-		case "GET_invention": {
-			
+		case "GET/inventions": {
+			algorand.readAll(awsConfig.tables.INVENTIONS_TABLE)
+				.then(generateResponse)
+				.catch(generateResponse);
 			break;
 		}
-		case "POST_invention": {
+		case "POST/invention": {
 			break;
 		}
 		// inventor
-		case "GET_inventor": {
+		case "GET/inventor": {
+			let queryParams = urlInfo.query;
+
+			algorand.read(awsConfig.tables.INVENTORS_TABLE, queryParams.username)
+				.then(generateResponse)
+				.catch(generateResponse);
 			break;
 		}
-		case "POST_inventor": {
+		case "POST/inventor": {
 			break;
 		}
 		// oracle
-		case "GET_oracle": {
+		case "GET/oracle": {
+			let queryParams = urlInfo.query;
+
+			algorand.read(awsConfig.tables.ORACLES_TABLE, queryParams.id)
+				.then(generateResponse)
+				.catch(generateResponse);
 			break;
 		}
-		case "POST_oracle": {
+		case "POST/oracle": {
 			break;
+		}
+		case "GET/favicon.ico": {
+			return;
+		}
+		default: {
+			let jsonResponse = {
+				error: {
+					code: 404,
+					type: "INVALID_URL",
+					message: "INVALID_URL: " + req.url
+				}
+			};
+
+			res.write(JSON.stringify(jsonResponse));
+			res.end();
 		}
 	}
-	res.write(req.url);
-	res.end();
-  });  
+});  
 
 app.listen(3000);
 console.log('API running on port 3000.');
