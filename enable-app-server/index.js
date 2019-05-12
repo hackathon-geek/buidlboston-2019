@@ -3,20 +3,6 @@ const url = require('url');
 const algorand = require('algorand');
 const awsConfig = require('./configs/aws-config.js');
 
-// let invention = {
-// 	id : "INV124",
-// 	title : "Prosthertic (Right) Arm for Kids",
-// 	version : "v1",
-// 	description : "Blah Blah Blah Blah"
-// };
-
-// let table = {
-// 	"name": "enable_inventions",
-// 	"primaryKey": "id"
-// };
-
-// algorand.write(invention, table);
-
 const app = http.createServer(function(req, res) {
 
 	const generateResponse = function(jsonObj) {
@@ -34,6 +20,15 @@ const app = http.createServer(function(req, res) {
 			break;
 		}
 		case "POST/invention": {
+			let inventionData = '';
+			req.on('data', chunk => {
+				inventionData += chunk.toString();
+			});
+			req.on('end', () => {
+				inventionData = JSON.parse(inventionData);
+				algorand.write(inventionData, awsConfig.tables.INVENTIONS_TABLE);
+				res.end('ok');
+			});
 			break;
 		}
 		// inventor
@@ -46,6 +41,15 @@ const app = http.createServer(function(req, res) {
 			break;
 		}
 		case "POST/inventor": {
+			let inventorInfo = '';
+			req.on('data', chunk => {
+				inventorInfo += chunk.toString();
+			});
+			req.on('end', () => {
+				inventorInfo = JSON.parse(inventorInfo);
+				algorand.write(inventorInfo, awsConfig.tables.INVENTORS_TABLE);
+				res.end('ok');
+			});
 			break;
 		}
 		// oracle
@@ -58,6 +62,15 @@ const app = http.createServer(function(req, res) {
 			break;
 		}
 		case "POST/oracle": {
+			let oracleInfo = '';
+			req.on('data', chunk => {
+				oracleInfo += chunk.toString();
+			});
+			req.on('end', () => {
+				oracleInfo = JSON.parse(oracleInfo);
+				algorand.write(oracleInfo, awsConfig.tables.ORACLES_TABLE);
+				res.end('ok');
+			});
 			break;
 		}
 		case "GET/favicon.ico": {
