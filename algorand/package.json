@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/hackathon-geek/buidlboston-2019#readme",
   "dependencies": {
+    "algosdk": "^1.0.8",
     "aws-sdk": "^2.453.0"
   }
 }
