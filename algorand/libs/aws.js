@@ -1,5 +1,5 @@
 const sdk = require("aws-sdk");
-const config = require("../configs/config.js");
+const config = require("../configs/aws-config.js");
 
 const awsConfig = config.awsConfig;
 sdk.config.update(awsConfig);
