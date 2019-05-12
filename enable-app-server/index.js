@@ -10,7 +10,9 @@ const app = http.createServer(function(req, res) {
 		res.end();
 	}
 	const urlInfo = url.parse(req.url, true);
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');	
 
+	console.log(req.method + urlInfo.pathname);
 	switch(req.method + urlInfo.pathname) {
 		// invention
 		case "GET/inventions": {
