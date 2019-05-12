@@ -5,6 +5,8 @@ const aws = require("./libs/aws.js");
 
 const read = aws.read;
 const write = function(jsonData, table) {
+
+    // TODO: Promise chaining
     
     // WRITE TO ALGORAND
     transaction_details = {
@@ -28,14 +30,14 @@ const write = function(jsonData, table) {
         // WRITE TO AWS
         jsonData["tx_info"] = algorandSuccessObj;
         aws.write(table, jsonData)
-        .then(function(awsSuccessObj) {
-            console.log("successfully written to AWS!");
-            console.log(awsSuccessObj);
-        })
-        .catch(function(awsErrorObj) {
-            console.log("error while writing to AWS!");
-            console.log(awsErrorObj);
-        });
+            .then(function(awsSuccessObj) {
+                console.log("successfully written to AWS!");
+                console.log(awsSuccessObj);
+            })
+            .catch(function(awsErrorObj) {
+                console.log("error while writing to AWS!");
+                console.log(awsErrorObj);
+            });
     }).catch(function(algorandErrorObj) {
         console.log("error while writing to Algorand!");
         console.log(algorandErrorObj);
