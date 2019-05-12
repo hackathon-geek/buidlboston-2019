@@ -21,4 +21,4 @@ aws.write(config.tables.INVENTIONS_TABLE, INV123)
     })
     .catch(function(obj) {
         console.log(obj);
-    });    
+    });
